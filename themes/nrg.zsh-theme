@@ -1,5 +1,4 @@
-# ZSH Theme - Preview: http://dl.dropbox.com/u/4109351/pics/gnzh-zsh-theme.png
-# Based on bira theme
+# Based on gnzh theme which was based on bira theme
 
 # load some modules
 autoload -U zsh/terminfo # Used in the colour alias below
@@ -17,12 +16,10 @@ if [[ $UID -ne 0 ]]; then # normal user
   eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}'
 #  eval PR_USER_OP='${PR_GREEN}%#${PR_NO_COLOR}'
 #  local PR_PROMPT='$PR_NO_COLOR➤ $PR_NO_COLOR'
-  local PR_PROMPT='$'
 else # root
   eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
 #  eval PR_USER_OP='${PR_RED}%#${PR_NO_COLOR}'
 #  local PR_PROMPT='$PR_RED➤ $PR_NO_COLOR'
-  local PR_PROMPT='#'
 fi
 
 # Check if we are on SSH or not
@@ -40,7 +37,7 @@ local git_branch=' $(git_prompt_info)%{$PR_NO_COLOR%}'
 
 #PROMPT="${user_host} ${current_dir} ${rvm_ruby} ${git_branch}$PR_PROMPT "
 PROMPT="╭─${user_host} ${current_dir}
-╰─%*${git_branch}$PR_PROMPT "
+╰─%*${git_branch}%# "
 RPS1="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$PR_YELLOW%}‹"
