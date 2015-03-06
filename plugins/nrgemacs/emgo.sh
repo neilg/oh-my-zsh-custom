@@ -1,12 +1,22 @@
-#!/bin/sh
+#!/bin/zsh
 
-if [ -z $DISPLAY ]; then
-  emacsclient --alternate-editor "" -t "$@"
+zparseopts -E -a opts t
+#echo $opts
+
+if [ -z $DISPLAY ] && [ -z ${opts[(r)-t]} ]; then
+    echo asdf
+    echo emacsclient -a '' -t "$@"
 else
-  emacsclient --alternate-editor '' --eval "(x-close-connection \"$DISPLAY\")" 2>/dev/null
-  if [ $? -eq 0 ]; then
-    emacsclient --alternate-editor "" --create-frame $@
-  else
-    emacsclient --alternate-editor "" $@
-  fi
+    displays=`emacsclient -a '' --eval "(mapcar (lambda (frame)
+                                              (terminal-name (frame-terminal frame)))
+                                                             (frame-list))"`
+    echo "$displays" | grep -q '"'$DISPLAY'"'
+    if [ $? -eq 0 ]; then
+	emacsclient -a '' "$@"
+    else
+	emacsclient -a '' --create-frame "$@"
+    fi
 fi
+
+
+
