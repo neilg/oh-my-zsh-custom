@@ -10,10 +10,12 @@ if "$ZSH/tools/require_tool.sh" emacs 23 2>/dev/null ; then
     export EMACS_PLUGIN_LAUNCHER="$ZSH/custom/plugins/nrgemacs/emgo.sh"
 
     # set EDITOR if not already defined.
-    # export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
+    export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
 
-    alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait"
+    alias emacs="$EMACS_PLUGIN_LAUNCHER"
     alias e=emacs
+    alias en="$EMACS_PLUGIN_LAUNCHER -n"
+    alias et="$EMACS_PLUGIN_LAUNCHER -t"
 
     # same than M-x eval but from outside Emacs.
     alias eeval="$EMACS_PLUGIN_LAUNCHER --eval"
