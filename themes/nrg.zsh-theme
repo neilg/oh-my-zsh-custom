@@ -8,7 +8,7 @@ setopt prompt_subst
 for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
   eval PR_$color='%{$fg[${(L)color}]%}'
 done
-eval PR_NO_COLOR="%{$terminfo[sgr0]%}"
+eval PR_NO_COLOR='%{$terminfo[sgr0]%}'
 eval PR_BOLD="%{$terminfo[bold]%}"
 
 # Check the UID
